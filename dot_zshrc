@@ -1,0 +1,96 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# Flex on Ubuntu users
+pfetch
+
+# Powerlevel10k instant prompt.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# Autocomplition
+autoload -U compinit && compinit -u
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)
+bindkey -M menuselect 'left' vi-backward-char
+bindkey -M menuselect 'down' vi-down-line-or-history
+bindkey -M menuselect 'up' vi-up-line-or-history
+bindkey -M menuselect 'right' vi-forward-char
+
+# Word select
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey '^H' backward-kill-word
+bindkey '5~' kill-word
+
+# Plugins
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Exports
+export TERM="xterm-256color"
+export PATH="$HOME/.local/bin:$PATH"
+export LANG=en_US.UTF-8
+export EDITOR="micro"
+export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
+export VISUAL="codium"
+export MANPAGER="sh -c \"col -bx | bat -l man -p\""
+
+# History
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.cache/zsh_istory
+
+# Aliases
+alias ..="cd .."
+alias ls="exa -lah --icons --group-directories-first"
+alias cat="bat"
+alias mkdir="mkdir -pv"
+alias kittyconf="micro ~/.config/kitty/kitty.conf"
+alias zshconf="micro ~/.zshrc"
+alias youtube-dl-mp3="youtube-dl -f \"bestaudio\" --extract-audio --audio-format mp3"
+alias ssh="kitty +kitten ssh"
+alias find="fd -H"
+alias code="codium"
+alias npm="pnpm"
+alias npx="pnpx"
+alias n="pnpm"
+alias ni="pnpm i"
+alias nr="pnpm rm"
+alias ns="pnpm run start"
+alias nsv="pnpm run serve"
+alias nw="pnpm run warch"
+alias nb="pnpm run build"
+alias nd="pnpm run dev"
+alias np="pnpm run preview"
+alias rm="rm -iv"
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias mv="ln -iv"
+alias grep="grep --color=auto"
+alias tb="nc termbin.com 9999"
+alias pm="sudo pacman"
+alias upd="paru -Syu --noconfirm && flatpak update -y && sudo pnpm -g update"
+alias pacman-upgrade="sudo pacman -Syu"
+alias pacman-download="pacman -Sw"
+alias pacman-install="sudo pacman -S"
+alias pacman-install-file="sudo pacman -U"
+alias pacman-remove="sudo pacman -R"
+alias pacman-purge="sudo pacman -Rns"
+alias pacman-repoinfo="pacman -Si"
+alias pacman-search="pacman -Ss"
+alias pacman-dbinfo="pacman -Qi"
+alias pacman-dbsearch="pacman -Qs"
+alias pacman-list-orphaned="pacman -Qdt"
+alias pacman-clean-cache="sudo pacman -Scc"
+alias pacman-list-package-files="pacman -Ql"
+alias pacman-provides-="pacman -Qo"
+alias pacman-force-installed="pacman -D --asexp"
+alias pacman-force-uninstalled="pacman -D --asdep"
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
