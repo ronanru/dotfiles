@@ -36,7 +36,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 export TERM="xterm-256color"
 export PATH="$HOME/.local/bin:$PATH"
 export LANG=en_US.UTF-8
-export EDITOR="micro"
+export EDITOR="nvim"
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 export VISUAL="codium"
 export MANPAGER="sh -c \"col -bx | bat -l man -p\""
@@ -44,11 +44,12 @@ export MANPAGER="sh -c \"col -bx | bat -l man -p\""
 # History
 HISTSIZE=1000
 SAVEHIST=1000
-HISTFILE=~/.cache/zsh_istory
+HISTFILE=~/.cache/zsh_history
 
 # Aliases
 alias ..="cd .."
 alias ls="exa -lah --icons --group-directories-first"
+alias v="nvim"
 alias cat="bat"
 alias mkdir="mkdir -pv"
 alias kittyconf="micro ~/.config/kitty/kitty.conf"
@@ -62,6 +63,7 @@ alias npx="pnpx"
 alias n="pnpm"
 alias ni="pnpm i"
 alias nr="pnpm rm"
+alias nu="pnpm update"
 alias ns="pnpm run start"
 alias nsv="pnpm run serve"
 alias nw="pnpm run warch"
