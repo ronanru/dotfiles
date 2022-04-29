@@ -194,5 +194,8 @@
   "workbench.colorTheme": "One Dark Pro Darker",
   "editor.overviewRulerBorder": false,
   "editor.hideCursorInOverviewRuler": true,
-  "cSpell.enabled": true
+  "cSpell.enabled": true,
+  "workbench.editor.limit.enabled": true,
+  "workbench.editor.limit.perEditorGroup": true,
+  "workbench.editor.limit.value": 1
 }
