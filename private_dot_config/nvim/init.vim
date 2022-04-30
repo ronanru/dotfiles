@@ -57,7 +57,7 @@ require'nvim-tree'.setup {
 }
 require'lualine'.setup()
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "html", "css", "javascript", "typescript", "svelte", "json" },
+  ensure_installed = { "html", "css", "javascript", "typescript", "svelte", "json", "cpp" },
   sync_install = false,
   highlight = {
     enable = true,
