@@ -32,6 +32,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'preservim/nerdcommenter'
 Plug 'mhinz/vim-startify'
+Plug 'folke/which-key.nvim'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install --frozen-lockfile --production',
   \ 'branch': 'release/0.x'
@@ -41,15 +42,14 @@ call plug#end()
 
 syntax on
 filetype plugin on
-colorscheme onedarkpro
 
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <C-_> :call nerdcommenter#Comment(0,"toggle")<CR>
 
 let g:nvim_tree_git_hl = 1
 
-
 lua << END
+require'which-key'.setup()
 require'nvim-tree'.setup {
   view = {
     side = "right",
@@ -64,4 +64,13 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+local onedarkpro = require("onedarkpro")
+onedarkpro.setup({
+  options = {
+      italic = true,
+      cursorline = true,
+      transparency = true,
+  }
+})
+onedarkpro.load()
 END
