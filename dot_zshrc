@@ -35,7 +35,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Exports
 export TERM="xterm-256color"
 export PNPM_HOME="/home/matvey/.local/share/pnpm"
-export PATH="$HOME/.local/bin:$PNPM_HOME:$PATH"
+export PATH="$HOME/.local/bin:$PNPM_HOME:$HOME/.deno/bin:$PATH"
 export LANG=en_US.UTF-8
 export EDITOR="nvim"
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
