@@ -46,8 +46,6 @@ filetype plugin on
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <C-_> :call nerdcommenter#Comment(0,"toggle")<CR>
 
-let g:nvim_tree_git_hl = 1
-
 lua << END
 require'which-key'.setup()
 require'nvim-tree'.setup {
