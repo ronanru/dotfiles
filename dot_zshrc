@@ -35,7 +35,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Exports
 export TERM="xterm-256color"
 export PNPM_HOME="/home/matvey/.local/share/pnpm"
-export PATH="$HOME/.local/bin:$PNPM_HOME:$PATH"
+export PATH="$HOME/.local/bin:$PNPM_HOME:$HOME/.deno/bin:$PATH"
 export LANG=en_US.UTF-8
 export EDITOR="nvim"
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
@@ -74,6 +74,7 @@ alias mv="mv -iv"
 alias ln="ln -iv"
 alias grep="grep --color=auto"
 alias tb="nc termbin.com 9999"
+alias fileserver="deno run --allow-net --allow-read https://deno.land/std/http/file_server.ts"
 alias pm="sudo pacman"
 alias upd="paru -Syu --noconfirm && flatpak update -y && pnpm -g update"
 alias pacman-upgrade="sudo pacman -Syu"
