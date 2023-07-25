@@ -1,0 +1,77 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# Flex on Ubuntu users
+PF_INFO="ascii title os uptime pkgs memory palette" pfetch
+
+# Autocomplition
+autoload -U compinit && compinit -u
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zmodload zsh/complist
+_comp_options+=(globdots)
+bindkey -M menuselect 'left' vi-backward-char
+bindkey -M menuselect 'down' vi-down-line-or-history
+bindkey -M menuselect 'up' vi-up-line-or-history
+bindkey -M menuselect 'right' vi-forward-char
+
+# Word select
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey '^H' backward-kill-word
+bindkey '5~' kill-word
+
+# Plugins
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Exports
+export TERM="xterm-256color"
+export PATH="$HOME/.local/bin:$HOME/.local/share/pnpm:$HOME/.deno/bin:$HOME/.bun/bin:$HOME/.cargo/bin:/usr/lib/rustup/bin:$PATH"
+export LANG=en_US.UTF-8
+export EDITOR="nvim"
+export MANPAGER="sh -c \"col -bx | bat -l man -p\""
+
+# Aliases
+alias upd="paru -Syu --noconfirm && flatpak update -y && pnpm -g update && rustup update"
+alias ls="exa -lah --icons --group-directories-first"
+alias vim="nvim"
+alias v="nvim"
+alias c="code"
+alias cat="bat"
+alias mkdir="mkdir -pv"
+alias yt-dlp-mp3="yt-dlp -f \"bestaudio\" --extract-audio --audio-format mp3 --add-metadsata"
+alias find="fd -H"
+alias npm="pnpm"
+alias npx="bun x"
+alias bunx="bun x"
+alias n="pnpm"
+alias ni="pnpm i"
+alias na="pnpm add"
+alias nr="pnpm rm"
+alias nu="pnpm update --latest"
+alias ns="bun run start"
+alias nsv="bun run serve"
+alias nw="bun run warch"
+alias nb="bun run build"
+alias nd="bun run dev"
+alias np="bun run preview"
+alias rm="rm -iv"
+alias cp="cp -iv"
+alias mv="mv -iv"
+alias ln="ln -iv"
+alias grep="grep --color=auto"
+alias tb="nc termbin.com 9999"
+alias pm="sudo pacman"
+alias find-cover-art="sacad_r -f . 600 + -s {itunes,lastfm,deezer,amazondigital} -a {ca,co.uk}"
+alias cdtemp="cd $(mktemp -d)"
+alias fzf="fzf --preview 'bat --color \"always\" {}'"
+
+# Starship ptompt
+eval "$(starship init zsh)"
+
+# Zoxide
+eval "$(zoxide init zsh)"
+
+# Atuin
+eval "$(atuin init zsh --disable-up-arrow)"

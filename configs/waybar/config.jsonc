@@ -1,0 +1,50 @@
+{
+  "height": 24,
+  "spacing": 0,
+  "output": "DP-3",
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["hyprland/window"],
+  "modules-right": ["tray", "pulseaudio", "battery", "hyprland/language", "clock"],
+  "hyprland/workspaces": {
+    "on-click": "activate",
+    "format": "{id}: {icon}",
+    "format-icons": {
+      "active": "",
+      "default": ""
+    }
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-bluetooth": "{volume}% {icon}",
+    "format-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", ""]
+    },
+    "scroll-step": 1,
+    "on-click": "pavucontrol"
+  },
+  "hyprland/language": {
+    "format-en": "🇺🇸",
+    "format-ru": "🇷🇺"
+  },
+  "battery": {
+    "interval": 60,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""],
+    "max-length": 25
+  },
+  "hyprland/window": {
+    "max-length": 200,
+    "separate-outputs": true
+  }
+}
