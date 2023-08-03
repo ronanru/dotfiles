@@ -66,6 +66,10 @@ alias pm="sudo pacman"
 alias find-cover-art="sacad_r -f . 600 + -s {itunes,lastfm,deezer,amazondigital} -a {ca,co.uk}"
 alias cdtemp="cd $(mktemp -d)"
 alias fzf="fzf --preview 'bat --color \"always\" {}'"
+alias cr="cargo run"
+alias cb="cargo build --release"
+alias ca="cargo add"
+alias cr="cargo rm"
 
 # Starship ptompt
 eval "$(starship init zsh)"

@@ -116,6 +116,9 @@ install_programming_staff() {
   rustup default stable
   mkdir ~/Coding
 
+  mkdir ~/.config/nvim
+  cp ./configs/init.lua ~/.config/nvim/init.lua
+
   xdg-mime default org.gnome.Nautilus.desktop inode/directory
 
   if [ "$USER" == "matvey" ]; then
