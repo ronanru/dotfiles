@@ -111,6 +111,8 @@ require("lazy").setup({
       { 'L3MON4D3/LuaSnip' },
     }
   },
+  'jose-elias-alvarez/null-ls.nvim',
+  'davidmh/cspell.nvim',
   {
     'nvim-lualine/lualine.nvim',
     opts = {
@@ -181,6 +183,17 @@ lsp.ensure_installed({
 })
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 lsp.setup()
+
+local null_ls = require("null-ls")
+local cspell = require('cspell')
+null_ls.setup({
+  sources = {
+    cspell.diagnostics,
+    cspell.code_actions,
+    null_ls.builtins.diagnostics.eslint,
+    null_ls.builtins.formatting.prettierd
+  },
+})
 
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
