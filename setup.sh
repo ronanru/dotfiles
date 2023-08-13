@@ -119,6 +119,9 @@ install_programming_staff() {
   mkdir ~/.config/nvim
   cp ./configs/init.lua ~/.config/nvim/init.lua
 
+  mkdir ~/.config/rustfmt
+  cp ./configs/rustfmt.toml ~/.config/rustfmt/rustfmt.toml
+
   xdg-mime default org.gnome.Nautilus.desktop inode/directory
 
   pnpm i -g prettier typescript vercel cspell
@@ -219,6 +222,7 @@ install_gnome() {
   gsettings set org.gnome.shell.keybindings switch-to-application-9 "[]"
   gsettings set org.gnome.shell.keybindings toggle-message-tray "[]"
   gsettings set org.gnome.shell.extensions.pano global-shortcut "['<Super>v']"
+  gsettings set org.gnome.shell.extensions.pano send-notifications-on-copy false
   gsettings set org.gnome.shell.extensions.blur-my-shell.panel blur false
   gsettings set org.gnome.shell.extensions.pop-shell active-hint true
   gsettings set org.gnome.shell.extensions.pop-shell active-hint-radius 16
