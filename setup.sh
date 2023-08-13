@@ -121,6 +121,8 @@ install_programming_staff() {
 
   xdg-mime default org.gnome.Nautilus.desktop inode/directory
 
+  pnpm i -g prettier typescript vercel cspell
+
   if [ "$USER" == "matvey" ]; then
     git config --global user.name "Matvey Ryabchikov"
     git config --global user.email "ronanru@users.noreply.github.com"

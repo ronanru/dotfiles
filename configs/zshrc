@@ -27,7 +27,8 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # Exports
 export TERM="xterm-256color"
-export PATH="$HOME/.local/bin:$HOME/.local/share/pnpm:$HOME/.deno/bin:$HOME/.bun/bin:$HOME/.cargo/bin:/usr/lib/rustup/bin:$PATH"
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$HOME/.local/bin:$PNPM_HOME:$HOME/.deno/bin:$HOME/.bun/bin:$HOME/.cargo/bin:/usr/lib/rustup/bin:$PATH"
 export LANG=en_US.UTF-8
 export EDITOR="nvim"
 export MANPAGER="sh -c \"col -bx | bat -l man -p\""
@@ -40,7 +41,7 @@ alias v="nvim"
 alias c="code"
 alias cat="bat"
 alias mkdir="mkdir -pv"
-alias yt-dlp-mp3="yt-dlp -f \"bestaudio\" --extract-audio --audio-format mp3 --add-metadsata"
+alias yt-dlp-mp3="yt-dlp -f \"bestaudio\" --extract-audio --audio-format mp3 --add-metadata"
 alias find="fd -H"
 alias npm="pnpm"
 alias npx="bun x"
