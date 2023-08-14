@@ -117,14 +117,12 @@ install_programming_staff() {
   mkdir ~/Coding
 
   mkdir ~/.config/nvim
-  cp ./configs/init.lua ~/.config/nvim/init.lua
+  cp ./configs/nvim/init.lua ~/.config/nvim/init.lua
 
   mkdir ~/.config/rustfmt
   cp ./configs/rustfmt.toml ~/.config/rustfmt/rustfmt.toml
 
   xdg-mime default org.gnome.Nautilus.desktop inode/directory
-
-  pnpm i -g prettier typescript vercel cspell
 
   if [ "$USER" == "matvey" ]; then
     git config --global user.name "Matvey Ryabchikov"
