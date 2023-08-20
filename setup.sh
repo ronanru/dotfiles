@@ -75,9 +75,9 @@ install_shell_config() {
     zsh-syntax-highlighting \
     starship \
     exa \
-    tmux \
     fzf \
     ripgrep \
+    zellij \
     fd \
     bat \
     zoxide \
@@ -102,7 +102,9 @@ install_programming_staff() {
     code-features \
     code-marketplace \
     neovim \
+    neovide \
     rustup \
+    bacon \
     nodejs-lts-hydrogen \
     pnpm \
     github-cli \

@@ -28,6 +28,7 @@ vim.o.showmode = false
 vim.o.list = true
 vim.o.listchars = "tab:»·,trail:·,nbsp:·,extends:→,precedes:←"
 vim.g.rust_recommended_style = 0
+vim.o.guifont = "Cascadia Code:h14"
 
 -- vim.o.signcolumn = "no"
 
@@ -112,7 +113,6 @@ require("lazy").setup({
     }
   },
   'jose-elias-alvarez/null-ls.nvim',
-  'davidmh/cspell.nvim',
   {
     'nvim-lualine/lualine.nvim',
     opts = {
@@ -185,11 +185,8 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 lsp.setup()
 
 local null_ls = require("null-ls")
-local cspell = require('cspell')
 null_ls.setup({
   sources = {
-    cspell.diagnostics,
-    cspell.code_actions,
     null_ls.builtins.diagnostics.eslint,
     null_ls.builtins.formatting.prettierd
   },
