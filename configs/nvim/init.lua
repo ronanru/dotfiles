@@ -245,7 +245,7 @@ end
 
 vim.keymap.set("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>p", "<Cmd>Telescope projects<CR>")
+vim.keymap.set("n", "<leader>r", "<Cmd>Telescope projects<CR>")
 
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
