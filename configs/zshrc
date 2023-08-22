@@ -70,7 +70,7 @@ alias fzf="fzf --preview 'bat --color \"always\" {}'"
 alias cr="cargo run"
 alias cb="cargo build --release"
 alias ca="cargo add"
-alias cr="cargo rm"
+alias crm="cargo rm"
 
 # Starship ptompt
 eval "$(starship init zsh)"
