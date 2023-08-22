@@ -209,7 +209,7 @@ cmp.setup({
 
 
 vim.keymap.set({ "i", "v", "n" }, "<C-s>", vim.cmd.w)
-vim.keymap.set("", "<C-S-\\>", vim.cmd.split)
+vim.keymap.set("", "<C-|>", vim.cmd.split)
 vim.keymap.set("", "<C-\\>", vim.cmd.vsplit)
 vim.api.nvim_set_keymap(
   "n",
@@ -250,8 +250,8 @@ vim.keymap.set("n", "<leader>p", "<Cmd>Telescope projects<CR>")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 local builtin = require('telescope.builtin')
-vim.keymap.set("n", "<leader>f", builtin.find_files, {})
-vim.keymap.set("n", "<C-f>", builtin.live_grep, {})
+vim.keymap.set("n", "<C-p>", builtin.find_files, {})
+vim.keymap.set("n", "<leader>f", builtin.live_grep, {})
 
 function _G.set_terminal_keymaps()
   local opts = { buffer = 0 }
