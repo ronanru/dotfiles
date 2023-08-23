@@ -83,11 +83,11 @@ install_shell_config() {
     zoxide \
     neofetch \
     pfetch-rs-bin \
-    alacritty \
+    kitty \
     atuin
 
   mkdir ~/.config/alacritty
-  cp ./configs/alacritty.yml ~/.config/alacritty/alacritty.yml
+  cp ./configs/kitty.conf ~/.config/kitty/kitty.conf
   cp ./configs/zshrc ~/.zshrc
   sudo chsh -s /bin/zsh $USER
 }
@@ -102,7 +102,6 @@ install_programming_staff() {
     code-features \
     code-marketplace \
     neovim \
-    neovide \
     rustup \
     bacon \
     nodejs-lts-hydrogen \
@@ -179,9 +178,9 @@ install_gnome() {
   gnome-extensions enable pano@elhan.io
   gnome-extensions enable blur-my-shell@aunetx
 
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "alacritty"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name "kitty"
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding "<Super>Return"
-  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "alacritty"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "kitty"
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name "nautilus"
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "<Super>e"
   gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "nautilus"
