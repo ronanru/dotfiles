@@ -217,7 +217,7 @@ vim.api.nvim_set_keymap(
   ":Telescope file_browser<CR>",
   { noremap = true }
 )
-vim.keymap.set("i", "<C-_>", "<Esc><Plug>(comment_toggle_linewise_current)a")
+vim.keymap.set("i", "<C-_>", "<Esc><Plug>(comment_toggle_linewise_current)")
 vim.keymap.set("n", "<C-_>", "<Plug>(comment_toggle_linewise_current)")
 vim.keymap.set("v", "<C-_>", "<Plug>(comment_toggle_linewise_visual)")
 vim.keymap.set("i", "<C-H>", "<C-w>")
