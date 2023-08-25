@@ -76,7 +76,7 @@ require("lazy").setup({
   { "folke/which-key.nvim",                   opts = {} },
   { "stevearc/dressing.nvim",                 opts = {} },
   { "windwp/nvim-ts-autotag",                 opts = {} },
-  { "numToStr/Comment.nvim",                  opts = {} },
+  { "numToStr/Comment.nvim",                  opts = {}, lazy = false },
   { "lewis6991/gitsigns.nvim",                opts = {} },
   { "roobert/tailwindcss-colorizer-cmp.nvim", opts = {} },
   { "mrjones2014/smart-splits.nvim",          opts = {} },
@@ -192,7 +192,8 @@ local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
     null_ls.builtins.diagnostics.eslint,
-    null_ls.builtins.formatting.prettierd
+    null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.rustfmt
   },
 })
 
@@ -209,6 +210,7 @@ cmp.setup({
 
 
 vim.keymap.set({ "i", "v", "n" }, "<C-s>", vim.cmd.w)
+vim.keymap.set("i", "<C-BS>", vim.cmd.u)
 vim.keymap.set("", "<C-|>", vim.cmd.split)
 vim.keymap.set("", "<C-\\>", vim.cmd.vsplit)
 vim.api.nvim_set_keymap(
@@ -217,9 +219,9 @@ vim.api.nvim_set_keymap(
   ":Telescope file_browser<CR>",
   { noremap = true }
 )
-vim.keymap.set("i", "<C-_>", "<Esc><Plug>(comment_toggle_linewise_current)")
-vim.keymap.set("n", "<C-_>", "<Plug>(comment_toggle_linewise_current)")
-vim.keymap.set("v", "<C-_>", "<Plug>(comment_toggle_linewise_visual)")
+vim.keymap.set("i", "<C-/>", "<Esc><Plug>(comment_toggle_linewise_current)")
+vim.keymap.set("n", "<C-/>", "<Plug>(comment_toggle_linewise_current)")
+vim.keymap.set("v", "<C-/>", "<Plug>(comment_toggle_linewise_visual)")
 vim.keymap.set("i", "<C-H>", "<C-w>")
 vim.keymap.set("i", "^Z", vim.cmd.u)
 
