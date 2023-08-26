@@ -29,6 +29,7 @@ vim.o.list = true
 vim.o.listchars = "tab:»·,trail:·,nbsp:·,extends:→,precedes:←"
 vim.g.rust_recommended_style = 0
 vim.o.guifont = "Cascadia Code:h14"
+vim.o.backspace = "indent,eol,start"
 
 -- vim.o.signcolumn = "no"
 
@@ -210,7 +211,7 @@ cmp.setup({
 
 
 vim.keymap.set({ "i", "v", "n" }, "<C-s>", vim.cmd.w)
-vim.keymap.set("i", "<C-BS>", vim.cmd.u)
+vim.keymap.set("i", "<C-BS>", "<C-w>")
 vim.keymap.set("", "<C-|>", vim.cmd.split)
 vim.keymap.set("", "<C-\\>", vim.cmd.vsplit)
 vim.api.nvim_set_keymap(
