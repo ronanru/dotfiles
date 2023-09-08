@@ -35,7 +35,7 @@ export MANPAGER="sh -c \"col -bx | bat -l man -p\""
 
 # Aliases
 alias upd="paru -Syu --noconfirm && flatpak update -y && pnpm -g update && rustup update"
-alias ls="exa -lah --icons --group-directories-first"
+alias ls="eza -lah --icons --group-directories-first"
 alias vim="nvim"
 alias v="nvim"
 alias c="code"

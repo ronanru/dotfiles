@@ -74,7 +74,7 @@ install_shell_config() {
     zsh-autosuggestions \
     zsh-syntax-highlighting \
     starship \
-    exa \
+    eza \
     fzf \
     ripgrep \
     zellij \
