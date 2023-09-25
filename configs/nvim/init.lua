@@ -29,7 +29,6 @@ vim.o.list = true
 vim.o.listchars = "tab:»·,trail:·,nbsp:·,extends:→,precedes:←"
 vim.g.rust_recommended_style = 0
 vim.o.guifont = "Cascadia Code:h14"
-vim.o.backspace = "indent,eol,start"
 
 -- vim.o.signcolumn = "no"
 
@@ -67,14 +66,12 @@ require("lazy").setup({
         indent_blankline = {
           enabled = true,
         },
-        which_key = true,
         telescope = {
           enabled = true,
         }
       },
     }
   },
-  { "folke/which-key.nvim",                   opts = {} },
   { "stevearc/dressing.nvim",                 opts = {} },
   { "windwp/nvim-ts-autotag",                 opts = {} },
   { "numToStr/Comment.nvim",                  opts = {}, lazy = false },
@@ -101,18 +98,14 @@ require("lazy").setup({
       'JoosepAlviste/nvim-ts-context-commentstring',
     },
   },
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
-    dependencies = {
-      { 'neovim/nvim-lspconfig' },
-      { 'williamboman/mason.nvim' },
-      { 'williamboman/mason-lspconfig.nvim' },
-      { 'hrsh7th/nvim-cmp' },
-      { 'hrsh7th/cmp-nvim-lsp' },
-      { 'L3MON4D3/LuaSnip' },
-    }
-  },
+  { 'VonHeikemen/lsp-zero.nvim',                branch = 'v3.x' },
+  { 'neovim/nvim-lspconfig' },
+  { 'williamboman/mason.nvim' },
+  { 'williamboman/mason-lspconfig.nvim' },
+  { 'hrsh7th/nvim-cmp' },
+  { 'hrsh7th/cmp-nvim-lsp' },
+  { 'L3MON4D3/LuaSnip' },
+  'saadparwaiz1/cmp_luasnip',
   'jose-elias-alvarez/null-ls.nvim',
   {
     'nvim-lualine/lualine.nvim',
@@ -155,9 +148,14 @@ require("lazy").setup({
   "ahmedkhalf/project.nvim",
 }, {})
 
-require('telescope').load_extension('fzf')
-require('telescope').load_extension('file_browser')
-require("telescope").load_extension("projects")
+local telescope = require('telescope')
+telescope.setup {
+  extensions = {
+  }
+}
+telescope.load_extension('fzf')
+telescope.load_extension('file_browser')
+telescope.load_extension("projects")
 vim.cmd.colorscheme("catppuccin")
 
 require("project_nvim").setup({})
@@ -175,19 +173,25 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
-local lsp = require('lsp-zero').preset({})
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({ buffer = bufnr })
-  lsp.buffer_autoformat()
+local lsp_zero = require('lsp-zero').preset({})
+lsp_zero.on_attach(function(client, bufnr)
+  lsp_zero.default_keymaps({ buffer = bufnr })
+  lsp_zero.buffer_autoformat()
 end)
-lsp.ensure_installed({
-  'tsserver',
-  'eslint',
-  'rust_analyzer',
-  'tailwindcss',
+require('mason').setup({})
+require('mason-lspconfig').setup({
+  ensure_installed = { 'tsserver',
+    'eslint',
+    'rust_analyzer',
+    'tailwindcss', },
+  handlers = {
+    lsp_zero.default_setup,
+    lua_ls = function()
+      local lua_opts = lsp_zero.nvim_lua_ls()
+      require('lspconfig').lua_ls.setup(lua_opts)
+    end,
+  }
 })
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-lsp.setup()
 
 local null_ls = require("null-ls")
 null_ls.setup({
@@ -198,20 +202,85 @@ null_ls.setup({
   },
 })
 
+
+local ls = require("luasnip")
+local s = ls.snippet
+local i = ls.insert_node
+local t = ls.text_node
+local d = ls.dynamic_node
+local sn = ls.snippet_node
+
+ls.add_snippets("typescriptreact", {
+  --  Solid  Component
+  s("sc", {
+    t({ "import { type Component } from 'solid-js';", "", "const " }),
+    i(1, "ComponentName"),
+    t({ ": Component = () => {",
+      "  return <div></div>;", "};", "", "export default " }),
+    d(2,
+      function(args)
+        return sn(nil, {
+          i(1, args[1])
+        })
+      end,
+      { 1 }
+    ), t(";")
+  }),
+  --  React Component
+  s("rc", {
+    t({ "import { type Component } from 'react';", "", "const " }),
+    i(1, "ComponentName"),
+    t({ ": Component = () => {",
+      "  return <div></div>;", "};", "", "export default " }),
+    d(2,
+      function(args)
+        return sn(nil, {
+          i(1, args[1])
+        })
+      end,
+      { 1 }
+    ), t(";")
+  }),
+  --  JSX Component
+  s("jc", {
+    t("const "),
+    i(1, "ComponentName"),
+    t({ " = () => {",
+      "  return <div></div>;", "};", "", "export default " }),
+    d(2,
+      function(args)
+        return sn(nil, {
+          i(1, args[1])
+        })
+      end,
+      { 1 }
+    ), t(";")
+  }),
+})
+
+
+require('luasnip.loaders.from_vscode').lazy_load()
+
 local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
+local cmp_action = lsp_zero.cmp_action()
+local cmp_format = lsp_zero.cmp_format()
 cmp.setup({
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
   mapping = {
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-f>'] = cmp_action.luasnip_jump_forward(),
     ['<C-b>'] = cmp_action.luasnip_jump_backward(),
-  }
+  },
+  formatting = cmp_format,
 })
 
 
 vim.keymap.set({ "i", "v", "n" }, "<C-s>", vim.cmd.w)
-vim.keymap.set("i", "<C-BS>", "<C-w>")
+vim.keymap.set("i", "<C-BS>", vim.cmd.u)
 vim.keymap.set("", "<C-|>", vim.cmd.split)
 vim.keymap.set("", "<C-\\>", vim.cmd.vsplit)
 vim.api.nvim_set_keymap(
@@ -223,6 +292,9 @@ vim.api.nvim_set_keymap(
 vim.keymap.set("i", "<C-/>", "<Esc><Plug>(comment_toggle_linewise_current)")
 vim.keymap.set("n", "<C-/>", "<Plug>(comment_toggle_linewise_current)")
 vim.keymap.set("v", "<C-/>", "<Plug>(comment_toggle_linewise_visual)")
+vim.keymap.set("i", "", "<Esc><Plug>(comment_toggle_linewise_current)")
+vim.keymap.set("n", "", "<Plug>(comment_toggle_linewise_current)")
+vim.keymap.set("v", "", "<Plug>(comment_toggle_linewise_visual)")
 vim.keymap.set("i", "<C-H>", "<C-w>")
 vim.keymap.set("i", "^Z", vim.cmd.u)
 
