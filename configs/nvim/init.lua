@@ -72,9 +72,12 @@ require("lazy").setup({
       },
     }
   },
+  "numToStr/Comment.nvim",
+  "ahmedkhalf/project.nvim",
+  'saadparwaiz1/cmp_luasnip',
+  'jose-elias-alvarez/null-ls.nvim',
   { "stevearc/dressing.nvim",                 opts = {} },
   { "windwp/nvim-ts-autotag",                 opts = {} },
-  { "numToStr/Comment.nvim",                  opts = {}, lazy = false },
   { "lewis6991/gitsigns.nvim",                opts = {} },
   { "roobert/tailwindcss-colorizer-cmp.nvim", opts = {} },
   { "mrjones2014/smart-splits.nvim",          opts = {} },
@@ -105,8 +108,6 @@ require("lazy").setup({
   { 'hrsh7th/nvim-cmp' },
   { 'hrsh7th/cmp-nvim-lsp' },
   { 'L3MON4D3/LuaSnip' },
-  'saadparwaiz1/cmp_luasnip',
-  'jose-elias-alvarez/null-ls.nvim',
   {
     'nvim-lualine/lualine.nvim',
     opts = {
@@ -145,7 +146,6 @@ require("lazy").setup({
       "MunifTanjim/nui.nvim",
     }
   },
-  "ahmedkhalf/project.nvim",
 }, {})
 
 local telescope = require('telescope')
@@ -160,7 +160,6 @@ vim.cmd.colorscheme("catppuccin")
 
 require("project_nvim").setup({})
 
-
 require('nvim-treesitter.configs').setup {
   ensure_installed = { "vim", "lua", "javascript", "rust", "typescript", "html", "json", "tsx", "markdown",
     "markdown_inline", "bash", "regex", "yaml", "toml" },
@@ -171,6 +170,14 @@ require('nvim-treesitter.configs').setup {
     enable = true,
     enable_close_on_slash = false
   },
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  }
+}
+require('ts_context_commentstring').setup {}
+require('Comment').setup {
+  pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
 }
 
 local lsp_zero = require('lsp-zero').preset({})
