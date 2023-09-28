@@ -80,7 +80,6 @@ require("lazy").setup({
   { "windwp/nvim-ts-autotag",                 opts = {} },
   { "lewis6991/gitsigns.nvim",                opts = {} },
   { "roobert/tailwindcss-colorizer-cmp.nvim", opts = {} },
-  { "mrjones2014/smart-splits.nvim",          opts = {} },
   {
     "zbirenbaum/copilot.lua",
     opts = {
