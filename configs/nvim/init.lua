@@ -125,9 +125,7 @@ require("lazy").setup({
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    opts = {
-      show_current_context = true,
-    }
+    main = "ibl",
   },
   {
     "folke/noice.nvim",
@@ -156,6 +154,8 @@ telescope.load_extension('fzf')
 telescope.load_extension('file_browser')
 telescope.load_extension("projects")
 vim.cmd.colorscheme("catppuccin")
+
+require("ibl").setup()
 
 require("project_nvim").setup({})
 
