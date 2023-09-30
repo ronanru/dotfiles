@@ -286,8 +286,9 @@ cmp.setup({
 
 
 vim.keymap.set({ "i", "v", "n" }, "<C-s>", vim.cmd.w)
-vim.keymap.set("i", "<C-BS>", vim.cmd.u)
+vim.keymap.set("i", "<C-BS>", "<C-W>")
 vim.keymap.set("", "<C-|>", vim.cmd.split)
+vim.keymap.set("", "<C-S-\\>", vim.cmd.split)
 vim.keymap.set("", "<C-\\>", vim.cmd.vsplit)
 vim.api.nvim_set_keymap(
   "n",
