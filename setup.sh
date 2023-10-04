@@ -111,7 +111,6 @@ install_programming_staff() {
     podman \
     bun-bin \
     datagrip \
-    insomnia-bin \
     whois
 
   rustup default stable
