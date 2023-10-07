@@ -86,8 +86,10 @@ install_shell_config() {
     kitty \
     atuin
 
-  mkdir ~/.config/alacritty
+  mkdir ~/.config/kitty
   cp ./configs/kitty.conf ~/.config/kitty/kitty.conf
+  mkdir ~/.config/zellij
+  cp ./configs/zellij/config.kdl ~/.config/zellij/config.kdl
   cp ./configs/zshrc ~/.zshrc
   sudo chsh -s /bin/zsh $USER
 }

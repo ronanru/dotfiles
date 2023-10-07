@@ -83,6 +83,9 @@ alias cb="cargo build --release"
 alias ca="cargo add"
 alias crm="cargo rm"
 
+# Zellij
+eval "$(zellij setup --generate-auto-start zsh)"
+
 # Starship ptompt
 eval "$(starship init zsh)"
 
@@ -91,3 +94,4 @@ eval "$(zoxide init zsh)"
 
 # Atuin
 eval "$(atuin init zsh --disable-up-arrow)"
+
