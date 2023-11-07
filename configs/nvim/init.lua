@@ -75,7 +75,7 @@ require("lazy").setup({
   "numToStr/Comment.nvim",
   "ahmedkhalf/project.nvim",
   'saadparwaiz1/cmp_luasnip',
-  'jose-elias-alvarez/null-ls.nvim',
+  'nvimtools/null-ls.nvim',
   { "stevearc/dressing.nvim",                 opts = {} },
   { "windwp/nvim-ts-autotag",                 opts = {} },
   { "lewis6991/gitsigns.nvim",                opts = {} },
